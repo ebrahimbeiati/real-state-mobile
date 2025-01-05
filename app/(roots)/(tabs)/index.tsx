@@ -4,6 +4,7 @@ import images from "@/constants/images";
 import { Link } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import  { FeaturedCard , Card} from "@/components/Cards";
 
 export default function Index() {
   return (
@@ -27,12 +28,26 @@ export default function Index() {
           <TouchableOpacity>
             <Text className="text-base font-rubik-bold text-primary-300" >See all</Text>
           </TouchableOpacity>
-
-
         </View>
+        <View className="flex flex-row justify-between items-center gap-5 px-5 mt-5">
+          <FeaturedCard />
+          <FeaturedCard />
+        </View>
+      </View>
 
+        <View className="flex flex-row justify-between items-center px-5">
+          <Text className="text-lg font-bold">Our Recommendation</Text>
+          <TouchableOpacity>
+            <Text className="text-base font-rubik-bold text-primary-300" >See all</Text>
+          </TouchableOpacity>
+        </View>
+        <View className="flex flex-row gap-4  mt-5">
+          <Card />
+          <Card />
+          
+          </View>
       </View>
-      </View>
+   
       
     </SafeAreaView>
   );
