@@ -5,18 +5,18 @@ import { useAppwrite } from "./useAppwrite";
 import { Redirect } from "expo-router";
 
 interface GlobalContextType {
-  isLogged: boolean;
+  isLoggedIn: boolean;
   user: User | null;
   loading: boolean;
   refetch: () => void;
 }
-
-interface User {
-  $id: string;
-  name: string;
-  email: string;
-  avatar: string;
+export interface User {
+    $id: string;
+    name: string;
+    email: string;
+    avatar: string;
 }
+
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
@@ -33,12 +33,12 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
     fn: getCurrentUser,
   });
 
-  const isLogged = !!user;
+  const isLoggedIn = !!user;
 
   return (
     <GlobalContext.Provider
       value={{
-        isLogged,
+        isLoggedIn,
         user,
         loading,
         refetch,
@@ -50,11 +50,11 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 };
 
 export const useGlobalContext = (): GlobalContextType => {
-  const context = useContext(GlobalContext);
-  if (!context)
-    throw new Error("useGlobalContext must be used within a GlobalProvider");
-
-  return context;
-};
-
-export default GlobalProvider;
+    const context = useContext(GlobalContext);
+    if (!context)
+      throw new Error("useGlobalContext must be used within a GlobalProvider");
+  
+    return context;
+  };
+  
+  export default GlobalProvider;
